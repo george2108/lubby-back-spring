@@ -28,8 +28,6 @@ public class LabelsService implements ILabelsService{
         if(user.isEmpty()){
             HttpException httpException = HttpException.builder()
                     .message("Usuario no encotnrado")
-                    .statusCode(HttpStatus.NOT_FOUND.value())
-                    .status(HttpStatus.NOT_FOUND)
                     .build();
             return new ResponseEntity(httpException, HttpStatus.NOT_FOUND);
         }

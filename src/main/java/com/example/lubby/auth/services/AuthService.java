@@ -47,7 +47,6 @@ public class AuthService implements IAuthService {
             if(user.isEmpty()){
                 HttpException notFound = HttpException.builder()
                         .message("Usuario no encontrado")
-                        .status(HttpStatus.NOT_FOUND)
                         .build();
                 return new ResponseEntity(notFound, HttpStatus.NOT_FOUND);
             }
@@ -73,15 +72,11 @@ public class AuthService implements IAuthService {
         }catch (BadCredentialsException e){
             HttpException error = HttpException.builder()
                     .message("Las credenciales son invalidas")
-                    .status(HttpStatus.UNAUTHORIZED)
-                    .statusCode(HttpStatus.UNAUTHORIZED.value())
                     .build();
             return new ResponseEntity(error, HttpStatus.UNAUTHORIZED);
         }catch (Exception e){
             HttpException error = HttpException.builder()
                     .message(e.getMessage())
-                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
                     .build();
             return new ResponseEntity(error, HttpStatus.INTERNAL_SERVER_ERROR);
         }
